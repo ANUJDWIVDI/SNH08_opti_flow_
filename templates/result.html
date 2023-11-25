@@ -65,6 +65,7 @@
 
     <div class="clock">Clock: <span id="clock">0:00</span></div>
 
+
     <div class="section section1">
         <h3>Section 1</h3>
         <p>Time: {{ section_times[0] }} minutes</p>
@@ -92,6 +93,50 @@
         </div>
     </div>
 
+        <!-- Add a section for model selection -->
+    <div class="model-section">
+        <h3>Select a Model:</h3>
+        <button onclick="predict('regression_model_dt.pkl')">Regression DT</button>
+        <button onclick="predict('regression_model_lr.pkl')">Regression LR</button>
+        <button onclick="predict('regression_model_rf.pkl')">Regression RF</button>
+        <button onclick="predict('classification_model_rf.pkl')">Classification RF</button>
+    </div>
+
+    <script>
+        // JavaScript function to call Flask with the selected model
+        function predict(model) {
+            // You may need to send the relevant data to Flask for prediction
+            // Example: you can use AJAX to send an asynchronous request to Flask
+            // and update the page with the predicted results.
+            alert(`Selected model: ${model}`);
+            // You can replace the alert with your logic to fetch predictions.
+        }
+
+        // JavaScript to update the clock and manage box movements
+        let clockElement = document.getElementById('clock');
+        let currentTime = 0;
+
+        function startNextSection() {
+            let sections = document.querySelectorAll('.section .box');
+            sections.forEach((box) => {
+                box.style.animationPlayState = 'running';
+            });
+        }
+
+        setInterval(() => {
+            currentTime++;
+            let minutes = Math.floor(currentTime / 60);
+            let seconds = currentTime % 60;
+            clockElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            // Check if a section is completed
+            let currentSection = document.querySelector('.section .box');
+            if (currentSection && currentSection.offsetLeft >= 800) {
+                currentSection.style.animationPlayState = 'paused';
+                startNextSection();
+            }
+        }, 1000);
+    </script>
     <script>
         // JavaScript to update the clock and manage box movements
         let clockElement = document.getElementById('clock');
