@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiCarFlow Input</title>
+</head>
+<body>
+    <h1>OptiCarFlow Input</h1>
+    <form action="{{ url_for('index') }}" method="post">
+        <label for="total_time">Enter Total Time (minutes):</label>
+        <input type="number" id="total_time" name="total_time" required>
+        <br>
+        <label for="section_1_time">Enter Time Percentage for Section 1:</label>
+        <input type="number" id="section_1_time" name="section_1_time" value="25" required>
+        <br>
+        <label for="section_2_time">Enter Time Percentage for Section 2:</label>
+        <input type="number" id="section_2_time" name="section_2_time" value="35" required>
+        <br>
+        <label for="section_3_time">Enter Time Percentage for Section 3:</label>
+        <input type="number" id="section_3_time" name="section_3_time" value="40" required>
+        <br>
+        <label for="section_1_labor">Enter Labor for Section 1:</label>
+        <input type="number" id="section_1_labor" name="section_1_labor" value="5" required>
+        <br>
+        <label for="section_2_labor">Enter Labor for Section 2:</label>
+        <input type="number" id="section_2_labor" name="section_2_labor" value="10" required>
+        <br>
+        <label for="section_3_labor">Enter Labor for Section 3:</label>
+        <input type="number" id="section_3_labor" name="section_3_labor" value="10" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
