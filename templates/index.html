@@ -3,33 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OptiCarFlow Input</title>
+    <title>AI Material Movement Solution</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .section {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .graphs-section {
+            text-align: center;
+        }
+        .clients-section {
+            text-align: center;
+        }
+        .optimization-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>OptiCarFlow Input</h1>
-    <form action="{{ url_for('index') }}" method="post">
-        <label for="total_time">Enter Total Time (minutes):</label>
-        <input type="number" id="total_time" name="total_time" required>
-        <br>
-        <label for="section_1_time">Enter Time Percentage for Section 1:</label>
-        <input type="number" id="section_1_time" name="section_1_time" value="25" required>
-        <br>
-        <label for="section_2_time">Enter Time Percentage for Section 2:</label>
-        <input type="number" id="section_2_time" name="section_2_time" value="35" required>
-        <br>
-        <label for="section_3_time">Enter Time Percentage for Section 3:</label>
-        <input type="number" id="section_3_time" name="section_3_time" value="40" required>
-        <br>
-        <label for="section_1_labor">Enter Labor for Section 1:</label>
-        <input type="number" id="section_1_labor" name="section_1_labor" value="5" required>
-        <br>
-        <label for="section_2_labor">Enter Labor for Section 2:</label>
-        <input type="number" id="section_2_labor" name="section_2_labor" value="10" required>
-        <br>
-        <label for="section_3_labor">Enter Labor for Section 3:</label>
-        <input type="number" id="section_3_labor" name="section_3_labor" value="10" required>
-        <br>
-        <button type="submit">Submit</button>
-    </form>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">AI Material Movement</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#graphs">Performance Graphs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#clients">Clients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#optiCarFlow">OptiCarFlow Input</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>AI Material Movement Solution</h1>
+        <p>Revolutionizing material movement through AI</p>
+    </div>
+
+<div class="container">
+        <div class="row">
+            <!-- OptiCarFlow Input Section -->
+            <div class="col-md-6">
+                <div class="section" id="optiCarFlow">
+                    <h2>OptiCarFlow Input</h2>
+                    <form action="{{ url_for('index') }}" method="post">
+            <label for="total_time">Enter Total Time (minutes):</label>
+            <input type="number" id="total_time" name="total_time" required>
+            <br>
+            <label for="section_1_time">Enter Time Percentage for Section 1:</label>
+            <input type="number" id="section_1_time" name="section_1_time" value="25" required>
+            <br>
+            <label for="section_2_time">Enter Time Percentage for Section 2:</label>
+            <input type="number" id="section_2_time" name="section_2_time" value="35" required>
+            <br>
+            <label for="section_3_time">Enter Time Percentage for Section 3:</label>
+            <input type="number" id="section_3_time" name="section_3_time" value="40" required>
+            <br>
+            <label for="section_1_labor">Enter Labor for Section 1:</label>
+            <input type="number" id="section_1_labor" name="section_1_labor" value="5" required>
+            <br>
+            <label for="section_2_labor">Enter Labor for Section 2:</label>
+            <input type="number" id="section_2_labor" name="section_2_labor" value="10" required>
+            <br>
+            <label for="section_3_labor">Enter Labor for Section 3:</label>
+            <input type="number" id="section_3_labor" name="section_3_labor" value="10" required>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+
+                <div class="section optimization-section">
+                    <h2>Effective Optimization</h2>
+                    <p><strong>1. Effective optimization using the best workload optimization algorithm.</strong></p>
+                    <p><strong>2. The ML model utilizes the best predictive algorithms for efficient prediction and reorganization of tasks.</strong></p>
+                    <p><strong>3. Ensuring streamlined material movement with adaptive AI technology.</strong></p>
+                </div>
+
+        </div>
+    </div>
+
+
+    <!-- Graphs Section -->
+    <div class="section graphs-section" id="graphs">
+        <h2>Performance Graphs</h2>
+        <!-- Add your graphs here using a chart library like Chart.js -->
+        <div id="graph1"></div>
+        <iframe src="https://giphy.com/embed/l378c04F2fjeZ7vH2" width="480" height="322" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/animation-animated-l378c04F2fjeZ7vH2"></a></p>
+
+        <div id="graph2"></div>
+<iframe src="https://giphy.com/embed/JrXas5ecb4FkwbFpIE" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/socialbakers-JrXas5ecb4FkwbFpIE"></a></p>    </div>
+
+    <!-- Clients Section -->
+    <div class="section clients-section" id="clients">
+        <h2>Clients</h2>
+        <!-- Add your client information here -->
+        <div class="row">
+            <div class="col">
+                <h4>New Clients</h4>
+                <!-- Add client information dynamically -->
+                <p>Client 1</p>
+                <p>Client 2</p>
+            </div>
+            <div class="col">
+                <h4>Existing Clients</h4>
+                <!-- Add existing client information dynamically -->
+                <p>Client A</p>
+                <p>Client B</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Add your JS scripts for graphs or other functionalities -->
+    <script>
+        // Example: Add your graph initialization here using a library like Chart.js
+        // Chart code goes here
+    </script>
 </body>
 </html>

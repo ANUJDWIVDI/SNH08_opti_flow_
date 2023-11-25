@@ -35,6 +35,17 @@
             background-color: #0000FF;
             position: absolute;
             top: 40px;
+            animation-play-state: paused;
+        }
+        .section1 .box { animation: moveBox1 linear infinite {{ section_times[0] * 60 }}s; }
+        .section2 .box { animation: moveBox2 linear infinite {{ section_times[1] * 60 }}s; animation-delay: {{ section_times[0] * 60 }}s; }
+        .section3 .box { animation: moveBox3 linear infinite {{ section_times[2] * 60 }}s; animation-delay: {{ (section_times[0] + section_times[1]) * 60 }}s; }
+        @keyframes moveBox1 { 0% {left: 0;} 100% {left: 800px;} }
+        @keyframes moveBox2 { 0% {left: 0;} 100% {left: 800px;} }
+        @keyframes moveBox3 { 0% {left: 0;} 100% {left: 800px;} }
+        .clock {
+            font-size: 24px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -52,15 +63,60 @@
         <li>Section 3 Labor: {{ section_3_labor }}</li>
     </ul>
 
-    {% for i in range(3) %}
-        <div class="section">
-            <h3>Section {{ i+1 }}</h3>
-            <p>Time: {{ section_times[i] }} minutes</p>
-            <p>Labor: {{ section_labors[i] }}</p>
-            <div class="ladder">
-                <div class="box"></div>
-            </div>
+    <div class="clock">Clock: <span id="clock">0:00</span></div>
+
+    <div class="section section1">
+        <h3>Section 1</h3>
+        <p>Time: {{ section_times[0] }} minutes</p>
+        <p>Labor: {{ section_labors[0] }}</p>
+        <div class="ladder">
+            <div class="box"></div>
         </div>
-    {% endfor %}
+    </div>
+
+    <div class="section section2">
+        <h3>Section 2</h3>
+        <p>Time: {{ section_times[1] }} minutes</p>
+        <p>Labor: {{ section_labors[1] }}</p>
+        <div class="ladder">
+            <div class="box"></div>
+        </div>
+    </div>
+
+    <div class="section section3">
+        <h3>Section 3</h3>
+        <p>Time: {{ section_times[2] }} minutes</p>
+        <p>Labor: {{ section_labors[2] }}</p>
+        <div class="ladder">
+            <div class="box"></div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to update the clock and manage box movements
+        let clockElement = document.getElementById('clock');
+        let currentTime = 0;
+
+        function startNextSection() {
+            let sections = document.querySelectorAll('.section .box');
+            sections.forEach((box) => {
+                box.style.animationPlayState = 'running';
+            });
+        }
+
+        setInterval(() => {
+            currentTime++;
+            let minutes = Math.floor(currentTime / 60);
+            let seconds = currentTime % 60;
+            clockElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            // Check if a section is completed
+            let currentSection = document.querySelector('.section .box');
+            if (currentSection && currentSection.offsetLeft >= 800) {
+                currentSection.style.animationPlayState = 'paused';
+                startNextSection();
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
