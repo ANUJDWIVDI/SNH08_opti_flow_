@@ -10,11 +10,13 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+
         .section {
             border: 2px solid #000;
             padding: 10px;
             margin-bottom: 20px;
         }
+
         .ladder {
             width: 50px;
             height: 100px;
@@ -22,13 +24,15 @@
             position: relative;
             animation: moveLadder linear infinite 2s;
         }
+
         @keyframes moveLadder {
-            0% {left: 0;}
-            25% {left: 200px;}
-            50% {left: 400px;}
-            75% {left: 600px;}
-            100% {left: 800px;}
+            0% { left: 0; }
+            25% { left: 200px; }
+            50% { left: 400px; }
+            75% { left: 600px; }
+            100% { left: 800px; }
         }
+
         .box {
             width: 60px;
             height: 60px;
@@ -37,69 +41,136 @@
             top: 40px;
             animation-play-state: paused;
         }
-        .section1 .box { animation: moveBox1 linear infinite {{ section_times[0] * 60 }}s; }
-        .section2 .box { animation: moveBox2 linear infinite {{ section_times[1] * 60 }}s; animation-delay: {{ section_times[0] * 60 }}s; }
-        .section3 .box { animation: moveBox3 linear infinite {{ section_times[2] * 60 }}s; animation-delay: {{ (section_times[0] + section_times[1]) * 60 }}s; }
-        @keyframes moveBox1 { 0% {left: 0;} 100% {left: 800px;} }
-        @keyframes moveBox2 { 0% {left: 0;} 100% {left: 800px;} }
-        @keyframes moveBox3 { 0% {left: 0;} 100% {left: 800px;} }
+
+        .section1 .box {
+            animation: moveBox1 linear infinite {{ section_times[0] * 60 }}s;
+        }
+
+        .section2 .box {
+            animation: moveBox2 linear infinite {{ section_times[1] * 60 }}s;
+            animation-delay: {{ section_times[0] * 60 }}s;
+        }
+
+        .section3 .box {
+            animation: moveBox3 linear infinite {{ section_times[2] * 60 }}s;
+            animation-delay: {{ (section_times[0] + section_times[1]) * 60 }}s;
+        }
+
+        @keyframes moveBox1 {
+            0% { left: 0; }
+            100% { left: 800px; }
+        }
+
+        @keyframes moveBox2 {
+            0% { left: 0; }
+            100% { left: 800px; }
+        }
+
+        @keyframes moveBox3 {
+            0% { left: 0; }
+            100% { left: 800px; }
+        }
+
         .clock {
             font-size: 24px;
             margin-bottom: 10px;
         }
+
+        /* Additional styling for the layout and theme */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .result-section {
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .model-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            text-align: center;
+        }
+
+        .model-section button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .header h1, .header h2 {
+    text-align: left;
+}
     </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Result Page</h1>
-    <h2>Total Time: {{ total_time }} minutes</h2>
-
-    <h3>Input Values:</h3>
-    <ul>
-        <li>Section 1 Percentage: {{ section_1_time }}</li>
-        <li>Section 2 Percentage: {{ section_2_time }}</li>
-        <li>Section 3 Percentage: {{ section_3_time }}</li>
-        <li>Section 1 Labor: {{ section_1_labor }}</li>
-        <li>Section 2 Labor: {{ section_2_labor }}</li>
-        <li>Section 3 Labor: {{ section_3_labor }}</li>
-    </ul>
-
-    <div class="clock">Clock: <span id="clock">0:00</span></div>
-
-
-    <div class="section section1">
-        <h3>Section 1</h3>
-        <p>Time: {{ section_times[0] }} minutes</p>
-        <p>Labor: {{ section_labors[0] }}</p>
-        <div class="ladder">
-            <div class="box"></div>
+    <div class="container">
+        <div class="header">
+            <h1>Result Page</h1>
+            <h2>Total Time: {{ total_time }} minutes</h2>
         </div>
-    </div>
 
-    <div class="section section2">
-        <h3>Section 2</h3>
-        <p>Time: {{ section_times[1] }} minutes</p>
-        <p>Labor: {{ section_labors[1] }}</p>
-        <div class="ladder">
-            <div class="box"></div>
+        <div class="result-section">
+            <h3>Input Values:</h3>
+            <ul>
+                <li>Section 1 Percentage: {{ section_1_time }}</li>
+                <li>Section 2 Percentage: {{ section_2_time }}</li>
+                <li>Section 3 Percentage: {{ section_3_time }}</li>
+                <li>Section 1 Labor: {{ section_1_labor }}</li>
+                <li>Section 2 Labor: {{ section_2_labor }}</li>
+                <li>Section 3 Labor: {{ section_3_labor }}</li>
+            </ul>
+
+            <div class="clock">Clock: <span id="clock">0:00</span></div>
+
+            <div class="section section1">
+                <h3>Section 1</h3>
+                <p>Time: {{ section_times[0] }} minutes</p>
+                <p>Labor: {{ section_labors[0] }}</p>
+                <div class="ladder">
+                    <div class="box"></div>
+                </div>
+            </div>
+
+            <div class="section section2">
+                <h3>Section 2</h3>
+                <p>Time: {{ section_times[1] }} minutes</p>
+                <p>Labor: {{ section_labors[1] }}</p>
+                <div class="ladder">
+                    <div class="box"></div>
+                </div>
+            </div>
+
+            <div class="section section3">
+                <h3>Section 3</h3>
+                <p>Time: {{ section_times[2] }} minutes</p>
+                <p>Labor: {{ section_labors[2] }}</p>
+                <div class="ladder">
+                    <div class="box"></div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="section section3">
-        <h3>Section 3</h3>
-        <p>Time: {{ section_times[2] }} minutes</p>
-        <p>Labor: {{ section_labors[2] }}</p>
-        <div class="ladder">
-            <div class="box"></div>
+        <!-- Model selection section -->
+        <div class="model-section">
+            <h3>Select a Model:</h3>
+            <button onclick="predict('regression_model_dt.pkl')">Regression DT</button>
+            <button onclick="predict('regression_model_lr.pkl')">Regression LR</button>
+            <button onclick="predict('regression_model_rf.pkl')">Regression RF</button>
+            <button onclick="predict('classification_model_rf.pkl')">Classification RF</button>
         </div>
-    </div>
-
-        <!-- Add a section for model selection -->
-    <div class="model-section">
-        <h3>Select a Model:</h3>
-        <button onclick="predict('regression_model_dt.pkl')">Regression DT</button>
-        <button onclick="predict('regression_model_lr.pkl')">Regression LR</button>
-        <button onclick="predict('regression_model_rf.pkl')">Regression RF</button>
-        <button onclick="predict('classification_model_rf.pkl')">Classification RF</button>
     </div>
 
     <script>
@@ -112,32 +183,6 @@
             // You can replace the alert with your logic to fetch predictions.
         }
 
-        // JavaScript to update the clock and manage box movements
-        let clockElement = document.getElementById('clock');
-        let currentTime = 0;
-
-        function startNextSection() {
-            let sections = document.querySelectorAll('.section .box');
-            sections.forEach((box) => {
-                box.style.animationPlayState = 'running';
-            });
-        }
-
-        setInterval(() => {
-            currentTime++;
-            let minutes = Math.floor(currentTime / 60);
-            let seconds = currentTime % 60;
-            clockElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-            // Check if a section is completed
-            let currentSection = document.querySelector('.section .box');
-            if (currentSection && currentSection.offsetLeft >= 800) {
-                currentSection.style.animationPlayState = 'paused';
-                startNextSection();
-            }
-        }, 1000);
-    </script>
-    <script>
         // JavaScript to update the clock and manage box movements
         let clockElement = document.getElementById('clock');
         let currentTime = 0;
