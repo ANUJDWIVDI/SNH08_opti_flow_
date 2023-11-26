@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Database</title>
+</head>
+<body>
+    <h1>Employee Database Availability</h1>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Available</th>
+            <th>Action</th>
+        </tr>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee['id'] }}</td>
+            <td>{{ employee['name'] }}</td>
+            <td>{{ employee['email'] }}</td>
+            <td>
+                <form method="post" action="{{ url_for('update_employee', employee_id=employee['id']) }}">
+                    <input type="checkbox" name="available" {% if employee['available'] %}checked{% endif %}>
+                </form>
+            </td>
+<td>
+    <form method="post" action="{{ url_for('update_employee', employee_id=employee['id']) }}">
+        <input type="checkbox" name="available" {% if employee['available'] %}checked{% endif %}>
+        <button type="submit">Update</button>
+    </form>
+</td>
+
+       </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
