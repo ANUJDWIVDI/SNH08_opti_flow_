@@ -4,38 +4,101 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Database</title>
+    <title>Employee Database Availability</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007bff; /* Bootstrap primary color */
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Employee Database Availability</h1>
+    <div class="container">
+        <h1 class="text-center">Employee Database Availability</h1>
 
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Available</th>
-            <th>Action</th>
-        </tr>
-        {% for employee in employees %}
-        <tr>
-            <td>{{ employee['id'] }}</td>
-            <td>{{ employee['name'] }}</td>
-            <td>{{ employee['email'] }}</td>
-            <td>
-                <form method="post" action="{{ url_for('update_employee', employee_id=employee['id']) }}">
-                    <input type="checkbox" name="available" {% if employee['available'] %}checked{% endif %}>
-                </form>
-            </td>
-<td>
-    <form method="post" action="{{ url_for('update_employee', employee_id=employee['id']) }}">
-        <input type="checkbox" name="available" {% if employee['available'] %}checked{% endif %}>
-        <button type="submit">Update</button>
-    </form>
-</td>
+        <button class="btn btn-primary" onclick="triggerEmailNotifications()">Send Email Notifications</button>
 
-       </tr>
-        {% endfor %}
-    </table>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Available</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee['id'] }}</td>
+                    <td>{{ employee['name'] }}</td>
+                    <td>{{ employee['email'] }}</td>
+                    <td>
+                        <form method="post" action="{{ url_for('update_employee', employee_id=employee['id']) }}">
+                            <input type="checkbox" name="available" {% if employee['available'] %}checked{% endif %}>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="{{ url_for('update_employee', employee_id=employee['id']) }}">
+                            <input type="checkbox" name="available" {% if employee['available'] %}checked{% endif %}>
+                            <button type="submit" class="btn btn-sm btn-info">Update</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+<script>
+    function triggerEmailNotifications() {
+        // Simulate sending emails
+        var notificationMessage = "Email notifications triggered for all employees";
+        var notification = new Notification('Notification', { body: notificationMessage });
+
+        // Simulate a delay before showing the next notification
+        setTimeout(function() {
+            notification.close(); // Close the initial notification
+            showFinalNotification();
+        }, 2000); // 3000 milliseconds (3 seconds) delay
+    }
+
+    function showFinalNotification() {
+        var finalNotificationMessage = "Emails sent to all employees";
+        var finalNotification = new Notification('Notification', { body: finalNotificationMessage });
+
+        // Show an additional alert
+        alert(finalNotificationMessage);
+    }
+</script>
+
+
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

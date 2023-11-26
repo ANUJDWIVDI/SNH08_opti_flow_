@@ -65,6 +65,10 @@ print(employee_dict)
 def emp():
     return render_template('employee_db.html', employees=employee_dict.values())
 
+@app.route('/graph', methods=['GET', 'POST'])
+def graph():
+    return render_template('graph.html', employees=employee_dict.values())
+
 @app.route('/update_employee/<int:employee_id>', methods=['POST'])
 def update_employee(employee_id):
     if request.method == 'POST':
